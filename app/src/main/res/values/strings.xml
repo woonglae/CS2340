@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">M6</string>
+    <string name="button_config">Configuration</string>
+    <string name="edit_name">Enter your name</string>
+    <string name="engineer">Engineer</string>
+    <string name="pilot">Pilot</string>
+    <string name="fighter">Fighter</string>
+    <string name="trader">Trader</string>
+    <string name="skill_points">Skill Points</string>
+    <string name="charactor_name_input">Name</string>
+</resources>
