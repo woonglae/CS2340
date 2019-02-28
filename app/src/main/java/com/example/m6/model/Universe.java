@@ -23,7 +23,7 @@ public class Universe {
                 systemCount++;
             }
         }
-        Log.d("system", system.toString());
+        Log.d("UniverseSystem", system.toString());
     }
 
     public static void printMap(Universe universe) {

@@ -74,7 +74,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                     player = new Player(name, nPilot_point, nFighter_point, nTrader_point, nEngineer_point, difficulty);
 //                    String showStat = player.toString();
 //                    Toast.makeText(getApplicationContext(), showStat, Toast.LENGTH_LONG).show();
-                    Log.d("system", player.toString());
+                    Log.d("UniverseSystem", player.toString());
                     openUniverse();
                 }
 
@@ -85,7 +85,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     // open Next page which is Universe
     public void openUniverse() {
-        Intent intent = new Intent(this, UniverseActivity.class);
+        Intent intent = new Intent(this, CurrentPlanetActivity.class);
         startActivity(intent);
     }
 
