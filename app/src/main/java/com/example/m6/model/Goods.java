@@ -12,6 +12,7 @@ public enum Goods {
     NARCOTICS(5,0,5,3500,-125,150,"BOREDOM","WEIRDMUSHROOMS","NEVER",2000,3000),
     ROBOTS(6,4,7,5000,-150,100,"LACKOFWORKERS","NEVER","NEVER",3500,5000);
 
+    String name;
 
     int MTLP;
     int MTLU;
@@ -26,8 +27,9 @@ public enum Goods {
     int MTH;
 
 
-    Goods(int mtlp, int mtlu, int ttp, int baseprice, int ipl, int var,
+    Goods(String name, int mtlp, int mtlu, int ttp, int baseprice, int ipl, int var,
                  String ie, String cr, String er, int mtl, int mth) {
+        this.name = name;
         MTLP = mtlp;
         MTLU = mtlu;
         TTP = ttp;
@@ -39,6 +41,10 @@ public enum Goods {
         ER = er;
         MTL = mtl;
         MTH = mth;
+    }
+    
+    public String getName() {
+        return name;
     }
 
     public int getMTLP() { return MTLP; }
