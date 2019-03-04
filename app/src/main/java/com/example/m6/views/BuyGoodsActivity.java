@@ -339,8 +339,6 @@ public class BuyGoodsActivity extends AppCompatActivity implements BuyDialog.Buy
         bundle.putString("goodstype", goods);
         bundle.putInt("price", price);
         frag.setArguments(bundle);
-
-
         frag.show(getSupportFragmentManager(), "dialog");
 
     }

@@ -41,7 +41,7 @@ public class BuyDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
-        if(bundle!=null) {
+        if(bundle != null) {
             price = bundle.getInt("price");
             goodstype = bundle.getString("goodstype");
         }
