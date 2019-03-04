@@ -14,4 +14,5 @@
     <string name="title_activity_buy_goods">BuyGoods</string>
     <string name="title_activity_sell_goods">SellGoods</string>
     <string name="title_activity_menu">MenuActivity</string>
+
 </resources>

@@ -1,16 +1,24 @@
 package com.example.m6.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.widget.Space;
+
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable {
 
+    private static final long serialVersionUID= 1L;
     public static List<String> validDifficulty = Arrays.asList("Beginner", "Easy", "Normal", "Hard", "Impossible");
 
-    private String name, difficulty, spaceship;
+    private String name, difficulty;
+    private Spaceship spaceship;
     private int pilot, fighter, trader, engineer, credit;
-
-
+    private int cargo;
+    private Universe system;
+    private Planet currentplanet;
     public static int findIndexofDifficulty(String difficulty) {
         int i = 0;
         while(i<4) {
@@ -19,20 +27,29 @@ public class Player {
         }
         return 0;
     }
-    public Player(String name, int pilot, int fighter, int trader, int engineer, String difficulty) {
+    public Player(String name, int pilot, int fighter, int trader, int engineer, String difficulty, Universe universe) {
         this.name = name;
         this.pilot = pilot;
         this.fighter = fighter;
         this.trader = trader;
         this.engineer = engineer;
         this.difficulty = difficulty;
+        this.system = universe;
+
+        //this will be acamar solarsystem with acamar planet.
+        currentplanet = system.getSystem().get(0).getPlanet();
         credit = 1000;
-        spaceship = "gnat";
+        spaceship = Spaceship.GNAT;
+        cargo = 0;
     }
 
     public String getName() {
         return name;
     }
+
+    public Universe getSystem(){return system;}
+
+    public Planet getCurrentplanet(){return currentplanet;}
 
     public void setName(String name) {
         this.name = name;
@@ -86,17 +103,25 @@ public class Player {
         this.credit = credit;
     }
 
-    public String getSpaceship() {
+    public Spaceship getSpaceship() {
         return spaceship;
     }
 
-    public void setSpaceship(String spaceship) {
+    public void setSpaceship(Spaceship spaceship) {
         this.spaceship = spaceship;
+    }
+
+    public int getCargo(){
+        return cargo;
+    }
+    public void setCargo(int cargo){
+        this.cargo = cargo;
     }
 
     public String toString(){
         return String.format("Player %s has pilot point %d, Engineer point %d, Fighter point %d, Trader point %d with %s spaceship, $%d credit and difficulty : %s",
                 getName(), getPilot(), getEngineer(), getFighter(), getTrader(), getSpaceship(), getCredit(), getDifficulty());
     }
+
 
 }

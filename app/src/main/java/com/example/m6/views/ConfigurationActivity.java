@@ -3,6 +3,8 @@ package com.example.m6.views;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.m6.R;
 import com.example.m6.model.Player;
+import com.example.m6.model.Universe;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private Button save;
     private Player player;
-    private TextView remaintext;
+    private TextView remaining;
     private final int totalPoint = 16;
 
     @Override
@@ -41,6 +44,13 @@ public class ConfigurationActivity extends AppCompatActivity {
         edit_engineer_point = findViewById(R.id.engineer_point_text);
         difficultySpinner = findViewById(R.id.difficulty_spinner);
         save = findViewById(R.id.save_button);
+
+
+        remaining = findViewById(R.id.remaining);
+        remainingChange(edit_pilot_point);
+        remainingChange(edit_fighter_point);
+        remainingChange(edit_trader_point);
+        remainingChange(edit_engineer_point);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Player.validDifficulty);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,9 +81,9 @@ public class ConfigurationActivity extends AppCompatActivity {
                 if (sum != 16) {
                     Toast.makeText(getApplicationContext(), "the sum of skill point should be 16", Toast.LENGTH_LONG).show();
                 } else {
-                    player = new Player(name, nPilot_point, nFighter_point, nTrader_point, nEngineer_point, difficulty);
-//                    String showStat = player.toString();
-//                    Toast.makeText(getApplicationContext(), showStat, Toast.LENGTH_LONG).show();
+                    player = new Player(name, nPilot_point, nFighter_point, nTrader_point, nEngineer_point, difficulty, new Universe());
+                    String showStat = "player "+player.getName()+" is successfully created";
+                    Toast.makeText(getApplicationContext(), showStat, Toast.LENGTH_LONG).show();
                     Log.d("UniverseSystem", player.toString());
                     openUniverse();
                 }
@@ -82,10 +92,40 @@ public class ConfigurationActivity extends AppCompatActivity {
             }
         });
     }
+    public void remainingChange(final EditText editText) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!editText.getText().toString().equals("")){
+                    int pilot = (!edit_pilot_point.getText().toString().equals(""))? Integer.parseInt(edit_pilot_point.getText().toString()):0;
+                    int fighter = (!edit_fighter_point.getText().toString().equals(""))? Integer.parseInt(edit_fighter_point.getText().toString()):0;
+                    int trader = (!edit_trader_point.getText().toString().equals(""))? Integer.parseInt(edit_trader_point.getText().toString()):0;
+                    int engineer = (!edit_engineer_point.getText().toString().equals(""))? Integer.parseInt(edit_engineer_point.getText().toString()):0;
+
+                    int currPoint= pilot+fighter+trader+engineer;
+
+                    remaining.setText(String.valueOf(totalPoint-currPoint));
+                }
+                if(Integer.parseInt(remaining.getText().toString())<0){
+                    Toast.makeText(getApplicationContext(), "you can not assign more than 16 points", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
     // open Next page which is Universe
     public void openUniverse() {
         Intent intent = new Intent(this, CurrentPlanetActivity.class);
+        intent.putExtra("player", player);
         startActivity(intent);
     }
 

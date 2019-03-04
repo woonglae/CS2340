@@ -2,10 +2,13 @@ package com.example.m6.model;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Universe {
+public class Universe implements Serializable {
+
+    //Acamar is initial solar system when new player is created.
     String[] nameList = {"Acamar", "Baratas", "Calondia", "Daled", "Exo", "Ferris", "Hades", "Kira", "Lave", "Kimchi"};
 
     private int x;

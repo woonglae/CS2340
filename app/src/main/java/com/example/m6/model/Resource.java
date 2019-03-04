@@ -14,8 +14,14 @@ public enum Resource {
     WEIRDMUSHROOMS(9),
     LOTSOFHERBS(10),
     ARTISTIC(11),
-    WARLIKE(12);
-
+    WARLIKE(12),
+    DROUGHT(13),
+    COLD(14),
+    CROPFAIL(15),
+    BOREDOM(16),
+    WAR(17),
+    PLAGUE(18),
+    LACKOFWORKERS(19);
     private int code;
 
     Resource(int n) {
@@ -25,4 +31,5 @@ public enum Resource {
     public int getNumber() {
         return code;
     }
+
 }

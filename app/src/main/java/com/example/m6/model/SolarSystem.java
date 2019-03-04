@@ -1,6 +1,8 @@
 package com.example.m6.model;
 
-public class SolarSystem {
+import java.io.Serializable;
+
+public class SolarSystem implements Serializable {
     private String name;
     private int coordinate_x;
     private int coordinate_y;
@@ -10,7 +12,7 @@ public class SolarSystem {
     private Resource resourceValue;
     private Planet planet;
     SolarSystem(String name, int x, int y, int techLevel, int resource) {
-        Planet planet = new Planet(name, x, y);
+        this.planet = new Planet(name, x, y, techLevel, resource);
         this.name = name;
         coordinate_x = x;
         coordinate_y = y;
@@ -54,6 +56,10 @@ public class SolarSystem {
     }
     public Resource getResourceValue() {
         return resourceValue;
+    }
+
+    public Planet getPlanet() {
+        return planet;
     }
 
     public String toString(){
